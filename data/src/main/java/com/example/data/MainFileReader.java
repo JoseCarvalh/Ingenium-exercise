@@ -15,9 +15,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Component
 public class MainFileReader implements MainFileReaderImpl {
+
+	private final static String FILE = "./resource/euraud.json";
 
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -25,7 +26,7 @@ public class MainFileReader implements MainFileReaderImpl {
 	@Override
 	public List<Currencypair> getListClass() throws IOException {
 
-		File file = new File("./resource/euraud.json");
+		File file = new File(FILE);
 		String content = formatContent(Files.asCharSource(file, Charsets.UTF_8).read());
 
 		return objectMapper.readValue(content, new TypeReference<List<CurrencypairFile>>(){})
